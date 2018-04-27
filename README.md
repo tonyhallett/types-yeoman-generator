@@ -6,9 +6,7 @@ Change tsconfig compilerOptions
 
 "baseUrl": "./"
 
-"paths": {"yeoman-generator":["types-yeoman-generator"]}
-
-Exclude in .gitignore / npm
+"paths": {"yeoman-generator":["node_modules/types-yeoman-generator"]}
 
 ## Summary
 
