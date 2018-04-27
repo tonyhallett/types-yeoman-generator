@@ -39,4 +39,4 @@ declare class Generator<TOptions={}> extends EventEmitter {
 }
 ```
 
-The package depends on inquirer unfortunately its type definition file is not completely accurate.  The filter function should also has the answers as an argument.
+The package depends on inquirer unfortunately its type definition file is not completely accurate.  The filter function should also have the answers as an argument.
