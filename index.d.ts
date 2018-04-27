@@ -21,53 +21,40 @@ declare namespace Generator {
     interface SingleAnswer<V>{
       [key:string]:V
     }
-
+    //keeping all properties optional at the moment
+    //to do - create SingleQuestion for each type so that only the properties that are applicable
+    //to that prompt are present
     interface SingleQuestion<V=string> {
       store?:boolean;
-      /**
-       * Type of the prompt.
-       * Possible values:
-       * <ul>
-       *      <li>input</li>
-       *      <li>confirm</li>
-       *      <li>list</li>
-       *      <li>rawlist</li>
-       *      <li>password</li>
-       * </ul>
-       * @defaults: 'input'
-       */
+      //to do: possibly restrict to a union as the default adapter uses the default prompt module
       type?: string;
       /**
        * The name to use when storing the answer in the anwers hash.
        */
       name?: string;
       /**
-       * The question to print. If defined as a function,
-       * the first parameter will be the current inquirer session answers.
+       * The question to print.
        */
       
       message?: string | ((answers: SingleAnswer<V>) => string);
       /**
        * Default value(s) to use if nothing is entered, or a function that returns the default value(s).
-       * If defined as a function, the first parameter will be the current inquirer session answers.
+       * 
        */
-      //default?: any | ((answers: T) => any) | ((answers: T) => Promise<any>);
       default?: any;// | ((answers: T) => any) | ((answers: T) => Promise<any>);
       /**
-       * Choices array or a function returning a choices array. If defined as a function,
-       * the first parameter will be the current inquirer session answers.
+       * Choices array or a function returning a choices array. 
        * Array values can be simple strings, or objects containing a name (to display) and a value properties
        * (to save in the answers hash). Values can also be a Separator.
        */
       choices?:
-          | ReadonlyArray<inquirer.ChoiceType>;
-          //| ((answers: T) => ReadonlyArray<inquirer.ChoiceType>)
-          //| ((answers: T) => Promise<ReadonlyArray<inquirer.ChoiceType>>);
+          | ReadonlyArray<inquirer.ChoiceType>
+          | (() => ReadonlyArray<inquirer.ChoiceType>)
+          | (() => Promise<ReadonlyArray<inquirer.ChoiceType>>);
       /**
        * Receive the user input and should return true if the value is valid, and an error message (String)
        * otherwise. If false is returned, a default error message is provided.
        */
-      //validate?(input: string, answers?: T): boolean | string | Promise<boolean | string>;
       validate?(input: V): boolean | string | Promise<boolean | string>;
       /**
        * Receive the user input and return the filtered value to be used inside the program.
@@ -84,8 +71,7 @@ declare namespace Generator {
        * Receive the current user answers hash and should return true or false depending on whether or
        * not this question should be asked. The value can also be a simple boolean.
        */
-      when?: boolean;
-      //when?: boolean | ((answers: T) => boolean) | ((answers: T) => Promise<boolean>);
+      when?: boolean | (() => boolean) | (() => Promise<boolean>);
       paginated?: boolean;
       /**
        * Change the number of lines that will be rendered when using list, rawList, expand or checkbox.
