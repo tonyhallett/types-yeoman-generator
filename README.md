@@ -8,6 +8,8 @@ Change tsconfig compilerOptions
 
 "paths": {"yeoman-generator":["types-yeoman-generator"]}
 
+Exclude in .gitignore / npm
+
 ## Summary
 
 This package contains type definitions for yeoman-generator <https://github.com/yeoman/generator>.
