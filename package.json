@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@types/events": "*",
+    "@types/inquirer": "0.0.41"
+  },
+  "description": "TypeScript definitions for yeoman-generator",
+  "license": "MIT",
+  "main": "",
+  "name": "types-yeoman-generator",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.3",
+  "version": "1.0.0"
+}
